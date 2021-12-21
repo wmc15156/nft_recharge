@@ -1,9 +1,6 @@
 import { atom } from 'recoil';
 
-export const TimeZoneAtom = atom<{ gmt: string; region: string }>({
+export const TimeZoneAtom = atom({
   key: 'timeZone',
-  default: {
-    gmt: '',
-    region: '',
-  },
+  default: 0,
 });

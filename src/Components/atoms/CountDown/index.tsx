@@ -1,9 +1,25 @@
 import ReactCountDown, { zeroPad } from 'react-countdown';
-import React from 'react';
+import React, { useEffect } from 'react';
 import moment from 'moment';
+import { useRecoilState } from 'recoil';
+import { TimeZoneAtom } from '../../../store/atoms';
+import momentTimeZone from 'moment-timezone';
 
 const CountDown = () => {
+  const dDay = '2021-12-31 12:12:12';
+
   const CompletedTime = () => <span>D-DAY</span>;
+  const [timeZoneAtom, setTimeZoneAtom] = useRecoilState(TimeZoneAtom);
+  const gmt = moment().utc();
+  const krTime = momentTimeZone(dDay).tz('Asia/Seoul').format('YYYY-MM-DD HH:mm:ss');
+
+  const localTime = moment(dDay).format('YYYY-MM-DD HH:mm:ss');
+  const differ = moment(krTime).valueOf() - moment(localTime).valueOf();
+
+  useEffect(() => {
+    const date = moment().valueOf() + 864000000;
+    setTimeZoneAtom(date);
+  }, []);
 
   const renderer = ({
     days,
@@ -37,9 +53,11 @@ const CountDown = () => {
   };
 
   return (
-    <ReactCountDown date={moment().valueOf() + 864000000} renderer={renderer}>
-      <div>D-DAY</div>
-    </ReactCountDown>
+    <>
+      <ReactCountDown date={moment(localTime).valueOf() - differ} renderer={renderer}>
+        <div />
+      </ReactCountDown>
+    </>
   );
 };
 

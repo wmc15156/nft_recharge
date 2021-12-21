@@ -8,15 +8,6 @@ import { TimeZoneAtom } from './store/atoms';
 
 import './App.css';
 function App() {
-  // const [timeZoneAtom, setTimeZoneAtom] = useRecoilState(TimeZoneAtom);
-  const gmt = moment().utc();
-  console.log(gmt.unix(), 'unix', gmt.valueOf(), moment().parseZone().utcOffset());
-  console.log(
-    momentTimeZone().tz('Asia/Seoul').valueOf(),
-    'SEOUL',
-    momentTimeZone().tz('America/New_').valueOf(),
-    moment(new Date()).tz('Asia/Seoul')
-  );
   useEffect(() => {}, []);
 
   return (
