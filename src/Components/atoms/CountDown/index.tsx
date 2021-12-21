@@ -1,9 +1,8 @@
 import ReactCountDown, { zeroPad } from 'react-countdown';
-import React, { useEffect } from 'react';
+import React from 'react';
 import moment from 'moment';
 
 const CountDown = () => {
-  const now = moment();
   const CompletedTime = () => <span>D-DAY</span>;
 
   const renderer = ({
@@ -38,7 +37,7 @@ const CountDown = () => {
   };
 
   return (
-    <ReactCountDown date={moment().valueOf() + 10000} renderer={renderer}>
+    <ReactCountDown date={moment().valueOf() + 864000000} renderer={renderer}>
       <div>D-DAY</div>
     </ReactCountDown>
   );
