@@ -1,4 +1,4 @@
-import ReactCountDown from 'react-countdown';
+import ReactCountDown, { zeroPad } from 'react-countdown';
 import React, { useEffect } from 'react';
 import moment from 'moment';
 
@@ -28,19 +28,14 @@ const CountDown = () => {
         <div>
           <span className="emo">⚡</span>
           <span className="time">
-            <em className="day">{days}</em>d :<em className="hour">{hours}</em>h :
-            <em className="minute">{minutes}</em>m :<em className="second">{seconds}</em>s
+            <em className="day">{zeroPad(days)}</em>d : <em className="hour">{zeroPad(hours)}</em>h
+            : <em className="minute">{zeroPad(minutes)}</em>m :{' '}
+            <em className="second">{zeroPad(seconds)}</em>s
           </span>
         </div>
       );
     }
   };
-
-  console.log(moment().unix(), Date.now(), moment().valueOf());
-
-  useEffect(() => {
-    console.log(moment().unix(), Date.now());
-  }, [Date.now()]);
 
   return (
     <ReactCountDown date={moment().valueOf() + 10000} renderer={renderer}>
